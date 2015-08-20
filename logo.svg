@@ -1,0 +1,53 @@
+<svg version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     height="800"
+     width="800"
+     viewBox="125 125 150 150">
+
+  <defs>
+    <circle id="outerCircle" cx="200" cy="200" r="60" fill="blue" stroke="black"/>
+
+    <clipPath id="outerCircleClip">
+      <use xlink:href="#outerCircle"/>
+    </clipPath>
+  </defs>
+
+  <mask id="innerMask">
+    <rect x="0" y="0" width="800" height="800" fill="white"/>
+    <circle cx="200" cy="200" r="50" fill="black"/>
+  </mask>
+
+  <mask id="mask">
+    <rect x="0" y="0" width="800" height="800" fill="white" />
+    <!-- <rect x="185" y="150" width="100" height="100" fill="black" transform="rotate(45, 235, 200)"/> -->
+    <path id="path" fill="black" stroke="none" stroke-width="1"
+          d="M 200 200 L 400 400 L 400 0 Z" />
+  </mask>
+
+  <g mask="url(#innerMask)">
+    <g id="outerRing">
+      <use mask="url(#mask)" xlink:href="#outerCircle"/>
+
+      <path clip-path="url(#outerCircleClip)" id="path" fill="none" stroke="black" stroke-width="1"
+            d="M 200 200 L 400 400 L 400 0 Z" />
+    </g>
+
+    <circle cx="200" cy="200" r="55" fill="red" stroke="black"/>
+    <circle cx="200" cy="200" r="50" fill="white" stroke="black" stroke-width="2"/>
+  </g>
+
+  <animateTransform
+    xlink:href="#outerRing"
+    attributeName="transform"
+    type="rotate"
+    values="0 200 200;360 200 200"
+    dur="2s"
+    calcMode="spline"
+    keySplines=".5 0 .5 1"
+    repeatCount="indefinite"
+    />
+
+  <!-- <use xlink:href="#path" transform="translate(0, 200)"/> -->
+</svg>
